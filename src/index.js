@@ -1,1 +1,1 @@
-console.log('i')
+import Ship from './ship_class'
