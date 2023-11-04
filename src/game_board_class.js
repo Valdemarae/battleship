@@ -9,13 +9,7 @@ export default class GameBoard {
   }
 
   clear() {
-    let array = []
-    for(let i = 0; i < 10; ++i) {
-      for (let j = 0; j < 10; ++j) {
-        array[i][j] = EMPTY
-      }
-    }
-    return array
+    return [...Array(10)].map(() => Array(10).fill(EMPTY))
   }
 
   placeShip(x, y, length, vertical) {
