@@ -1,3 +1,5 @@
+import Ship from './ship_class'
+
 const EMPTY = ''
 const MISS = 'o'
 const HIT = 'x'
@@ -12,20 +14,26 @@ export default class GameBoard {
     return [...Array(10)].map(() => Array(10).fill(EMPTY))
   }
 
-  placeShip(x, y, length, vertical) {
+  placeShip(x, y, length, vertical, ship) {
+    let coordinates = []
     for (let i = 0; i < length; ++i) {
-      if (vertical)
+      if (vertical){
         this.array[y + i][x] = SHIP
-      else 
+        coordinates.push([y + i, x])
+      }
+      else {
         this.array[y][x + i] = SHIP
+        coordinates.push([y, x + i])
+      }
     }
+    ship.setCoordinates(coordinates)
   }
 
-  receiveAttack(x, y, ship) {
+  receiveAttack(x, y) {
     const value = this.array[y][x]
     if (value == SHIP) {
       this.array[y][x] = HIT
-      ship.hit()
+      Ship.find([y, x]).hit()
     } else {
       this.array[y][x] = MISS
     }
