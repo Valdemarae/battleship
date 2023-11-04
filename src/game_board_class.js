@@ -43,9 +43,9 @@ export default class GameBoard {
     for (let i = 0; i < 10; ++i) {
       for (let j = 0; j < 10; ++j) {
         if (this.array[i][j] == SHIP)
-          return true
+          return false
       }
     }
-    return false
+    return true
   }
 }
