@@ -26,3 +26,10 @@ describe('isSunk module', () => {
     expect(ship.isSunk()).toBe(true)
   })
 })
+
+describe('setCoordinates module', () => {
+  test('sets coordinates', () => {
+    ship.setCoordinates([2, 3])
+    expect(ship.coordinates).toStrictEqual([2, 3])
+  })
+})

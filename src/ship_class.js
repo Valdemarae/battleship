@@ -13,4 +13,8 @@ export default class Ship {
       return true
     return false
   }
+
+  setCoordinates(coordinates) {
+    this.coordinates = coordinates
+  }
 }
