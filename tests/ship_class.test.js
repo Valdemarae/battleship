@@ -29,7 +29,17 @@ describe('isSunk module', () => {
 
 describe('setCoordinates module', () => {
   test('sets coordinates', () => {
-    ship.setCoordinates([2, 3])
-    expect(ship.coordinates).toStrictEqual([2, 3])
+    ship.setCoordinates([[2, 3]])
+    expect(ship.coordinates).toStrictEqual([[2, 3]])
   })
+})
+
+describe('find module', () => {
+  test('finds a ship', () => {
+    expect(Ship.find([2, 3])).toBe(ship)
+  })
+
+  const ship2 = new Ship(4)
+  ship2.setCoordinates([[9,7], [9,8], [9,9]])
+  expect(Ship.find([9, 8])).toBe(ship2)
 })
