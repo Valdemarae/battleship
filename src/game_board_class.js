@@ -48,4 +48,9 @@ export default class GameBoard {
     }
     return true
   }
+
+  validMove(x, y) {
+    const position = this.array[y][x]
+    return (position == EMPTY || position == SHIP)
+  }
 }
