@@ -6,7 +6,9 @@ export default class Player {
     this.enemyBoard = enemyBoard
   }
 
-  move(x, y) {
+  move(coordinates) {
+    const x = coordinates[0]
+    const y = coordinates[1]
     if (this.enemyBoard.validMove(x, y)) {
       this.enemyBoard.receiveAttack(x, y)
       return true
