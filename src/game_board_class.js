@@ -7,14 +7,15 @@ const SHIP = 's'
 
 export default class GameBoard {
   constructor() {
-    this.array = this.clear()
+    this.array = this.#clear()
   }
 
-  clear() {
+  #clear() {
     return [...Array(10)].map(() => Array(10).fill(EMPTY))
   }
 
-  placeShip(x, y, length, vertical, ship) {
+  placeShip(x, y, length, vertical) {
+    const ship = new Ship(length)
     let coordinates = []
     for (let i = 0; i < length; ++i) {
       if (vertical){
@@ -52,5 +53,9 @@ export default class GameBoard {
   validMove(x, y) {
     const position = this.array[y][x]
     return (position == EMPTY || position == SHIP)
+  }
+
+  notEmpty(x, y) {
+    return this.array[y][x] != EMPTY
   }
 }
