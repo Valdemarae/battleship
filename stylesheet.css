@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2vh;
+}
+
+.container {
+  width: 90vw;
+  height: 67vh;
+  display: flex;
+  gap: 10vw;
+}
+
+.ships {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.player_board, .computer_board {
+  flex: 1;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+}
+
+.player_board > div, .computer_board > div {
+  flex: 1;
+  display: flex;
+}
+
+.square {
+  flex: 1;
+  border: 1px solid black;
+}
+
+.square:hover {
+  background-color: aliceblue;
+  cursor: pointer;
+}
+
+.ship {
+  background-color: grey;
+  border: 2px solid black;
+}
+
+.ship:hover {
+  cursor: pointer;
+}
+
+.dragover {
+  background-color: grey;
+}
+
+.container .placed {
+  background-color: grey;
+}
