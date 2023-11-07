@@ -12,15 +12,17 @@ export default class Game {
     this.player2 = new Player("Computer", this.board1)
     this.computer = new Computer()
 
-    this.#playerPlaceShips()
+    this.shipLengths = [5, 4, 3, 3, 2]
+    this.#placeShips()
   }
 
   // Called from html.js when all the ships are placed
   play() {
-    console.log("started playing")
-  }
 
-  #playerPlaceShips() {
-    Html.dragShip([5, 4, 3, 3, 2], this, this.board1)
+  }
+  
+  #placeShips() {
+    Html.dragShip(this.shipLengths, this, this.board1)
+    this.computer.placeShips(this.board2, this.shipLengths)
   }
 }
