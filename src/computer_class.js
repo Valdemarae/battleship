@@ -9,7 +9,7 @@ export default class Computer {
 
   placeShips(board) {
     [5, 4, 3, 3, 2].forEach((length) => {
-      vertical = Math.random() > 0.5 ? true : false
+      const vertical = Math.random() > 0.5 ? true : false
       const coordinates = this.#getPlacementCoordinates(board, vertical, length)
       board.placeShip(coordinates[0], coordinates[1], length, vertical)
     })

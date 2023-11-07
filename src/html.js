@@ -1,9 +1,3 @@
-import Ship from './ship_class'
-import GameBoard from './game_board_class'
-import Player from './player_class'
-import Computer from './computer_class'
-import Game from './game_class'
-
 const EMPTY = ''
 const MISS = 'o'
 const HIT = 'x'
@@ -34,20 +28,34 @@ export default class Html {
     }
   }
 
-  static async dragShip(length) {
-    const ship = document.createElement('div')
-    ship.classList.add('ship')
-    ship.classList.add('vertical')
-    ship.setAttribute('draggable', true)
-    let width = 4
-    let height = 6.7 * length
-    ship.setAttribute('style', 'width: '+width+'vw; height: '+height+'vh;')
-    document.querySelector('.ships').appendChild(ship)
+  static async dragShip(lengths, game) {
+    let index = 0
+    const maxIndex = lengths.length
+
+    function buildShip() {
+      length = lengths[index]
+      index++
+
+      ship = document.createElement('div')
+      ship.classList.add('ship')
+      ship.classList.add('vertical')
+      ship.setAttribute('draggable', true)
+      width = 4
+      height = 6.7 * length
+      ship.setAttribute('style', 'width: '+width+'vw; height: '+height+'vh;')
+      document.querySelector('.ships').appendChild(ship)
+    }
+    let ship = null
+    let length = null
+    let width = null
+    let height = null
+
+    buildShip()
+
     const playerBoard = document.querySelector(".player_board");
     
     ship.ondragstart = function(e){
       e.dataTransfer.clearData();
-      e.dataTransfer.setData("text", e.target.classList[0]);
     }
     
     playerBoard.ondragover = function(e){
@@ -117,7 +125,7 @@ export default class Html {
     playerBoard.ondrop = function(e){
       e.preventDefault();
       const data = e.dataTransfer.getData("text");
-      const element = document.querySelector('.'+data)
+      const element = document.querySelector('.ship')
       const ships = document.querySelector('.ships')
       if (validDrop(element, e.target, length)) {
         let y = e.target.classList[1][0]
@@ -135,6 +143,11 @@ export default class Html {
             (document.getElementsByClassName(y+x)[0]).classList.add('placed');
             y = (Number(y) + 1).toString()
           }
+        }
+        if (index != maxIndex) {
+          buildShip()
+        } else {
+          game.play()
         }
       } else {
         let y = e.target.classList[1][0]

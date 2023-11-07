@@ -1,3 +1,5 @@
-import Ship from './ship_class'
-import GameBoard from './game_board_class'
-import Player from './player_class'
+import Game from './game_class'
+import Html from './html'
+
+Html.populateBoards()
+new Game()
