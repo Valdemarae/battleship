@@ -28,7 +28,7 @@ export default class Html {
     }
   }
 
-  static async dragShip(lengths, game) {
+  static async dragShip(lengths, game, board) {
     let index = 0
     const maxIndex = lengths.length
 
@@ -130,6 +130,7 @@ export default class Html {
       if (validDrop(element, e.target, length)) {
         let y = e.target.classList[1][0]
         let x = e.target.classList[1][1]
+        board.placeShip(Number(x), Number(y), length, ship.classList.contains('vertical'))
         ships.removeChild(element);
         if (!ship.classList.contains('vertical')) {
           for (let i = 0; i < length; i++) {

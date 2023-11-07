@@ -21,6 +21,6 @@ export default class Game {
   }
 
   #playerPlaceShips() {
-    Html.dragShip([5, 4, 3, 3, 2], this)
+    Html.dragShip([5, 4, 3, 3, 2], this, this.board1)
   }
 }
