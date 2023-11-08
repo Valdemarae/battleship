@@ -1,12 +1,9 @@
+import Game from "./game_class"
+
 const EMPTY = ''
 const MISS = 'o'
 const HIT = 'x'
 const SHIP = 's'
-
-const playerBoard = document.querySelector('.player_board')
-const computerBoard = document.querySelector('.computer_board')
-const container = document.querySelector('.container')
-const ships = document.querySelector('.ships')
 
 export default class Html {
   static populateBoards() {
@@ -23,9 +20,24 @@ export default class Html {
         line.appendChild(square)
         line2.appendChild(square2)
       }
-      playerBoard.appendChild(line)
-      computerBoard.appendChild(line2)
+      document.querySelector('.player_board').appendChild(line)
+      document.querySelector('.computer_board').appendChild(line2)
     }
+  }
+
+  static repopulateBoards() {
+    const container = document.querySelector('.container')
+    container.style["pointer-events"] = "auto"
+    container.removeChild(document.querySelector('.player_board'))
+    container.removeChild(document.querySelector('.computer_board'))
+    container.removeChild(document.querySelector('.winner'))
+    const playerBoard = document.createElement('div')
+    const computerBoard = document.createElement('div')
+    playerBoard.classList.add('player_board')
+    computerBoard.classList.add('computer_board')
+    container.appendChild(playerBoard)
+    container.appendChild(computerBoard)
+    this.populateBoards()
   }
 
   static async dragShip(lengths, game, board) {
@@ -216,6 +228,9 @@ export default class Html {
     div.appendChild(h1)
     div.appendChild(restart)
     container.appendChild(div)
+    restart.addEventListener('click', () => {
+      Game.restart()
+    })
   }
 }
 
