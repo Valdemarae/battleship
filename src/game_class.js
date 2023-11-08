@@ -33,13 +33,24 @@ export default class Game {
   }
 
   #makeMoves(x, y) {
-    if (!this.player1.move(x, y)) { // Returns true if hit
+    const playerHit = this.player1.move(x, y) // Returns true if hit
+    if (!playerHit) {
       // Computer skips turn if user hits
       let hit = null
       do {
         const coordinates = this.computer.getCoordinates()
         hit = this.player2.move(coordinates[0], coordinates[1]) // True if hit
+        if (hit) {
+          if (this.board1.allShipsSunk()) {
+            Game.over()
+            return
+          }
+        }
       } while (hit)
+    } else { // if player hit
+      if (this.board2.allShipsSunk()) {
+        Game.over()
+      }
     }
   }
   
@@ -47,5 +58,9 @@ export default class Game {
     Html.dragShip(this.shipLengths, this, this.board1)
     this.computer.placeShips(this.board2, this.shipLengths)
     console.log(this.board2)
+  }
+
+  static over() {
+    console.log('game over')
   }
 }
