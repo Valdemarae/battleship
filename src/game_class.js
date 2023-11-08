@@ -8,7 +8,7 @@ export default class Game {
     this.#newPlayersAndBoards()
     this.computer = new Computer()
 
-    this.shipLengths = [5]
+    this.shipLengths = [5, 4, 3, 3, 2]
     this.#placeShips()
   }
 
@@ -53,7 +53,6 @@ export default class Game {
   #placeShips() {
     Html.dragShip(this.shipLengths, this, this.board1)
     this.computer.placeShips(this.board2, this.shipLengths)
-    console.log(this.board2)
   }
 
   static over(winnerName) {

@@ -43,6 +43,7 @@ export default class Html {
   static async dragShip(lengths, game, board) {
     let index = 0
     const maxIndex = lengths.length
+    document.querySelector('.rotate').textContent = 'Press R to rotate'
 
     function buildShip() {
       length = lengths[index]
@@ -52,8 +53,8 @@ export default class Html {
       ship.classList.add('ship')
       ship.classList.add('vertical')
       ship.setAttribute('draggable', true)
-      width = 4
-      height = 6.7 * length
+      width = 3.5
+      height = 5.7 * length
       ship.setAttribute('style', 'width: '+width+'vw; height: '+height+'vh;')
       document.querySelector('.ships').appendChild(ship)
     }
@@ -63,6 +64,7 @@ export default class Html {
     let height = null
 
     buildShip()
+    rotateEvent()
 
     const playerBoard = document.querySelector(".player_board");
     
@@ -116,24 +118,26 @@ export default class Html {
       }
     }
     
-    document.addEventListener('keydown', (event) => {
-      if (event.key == 'r') {
-        const ship1 = document.querySelector('.ship')
-        if (ship1) {
-          if (ship1.classList.contains('vertical')) {
-            width = 4 * length
-            height = 6.7
-            ship1.classList.remove('vertical')
-          } else {
-            width = 4
-            height = 6.7 * length
-            ship1.classList.add('vertical')
+    function rotateEvent() {
+      document.addEventListener('keydown', (event) => {
+        if (event.key == 'r') {
+          const ship1 = document.querySelector('.ship')
+          if (ship1) {
+            if (ship1.classList.contains('vertical')) {
+              width = 3.5 * length
+              height = 5.7
+              ship1.classList.remove('vertical')
+            } else {
+              width = 3.5
+              height = 5.7 * length
+              ship1.classList.add('vertical')
+            }
+            ship1.setAttribute('style', 'width: '+width+'vw; height: '+height+'vh;');
           }
-          ship1.setAttribute('style', 'width: '+width+'vw; height: '+height+'vh;');
         }
-      }
-    }, false);
-    
+      }, false);
+    }
+
     playerBoard.ondrop = function(e){
       e.preventDefault();
       const data = e.dataTransfer.getData("text");
@@ -160,6 +164,7 @@ export default class Html {
         if (index != maxIndex) {
           buildShip()
         } else {
+          document.querySelector('.rotate').textContent = ''
           game.play()
         }
       } else {
