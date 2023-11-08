@@ -39,6 +39,7 @@ export default class GameBoard {
       Ship.find([y, x]).hit()
     } else {
       this.array[y][x] = MISS
+      Html.miss(''+y + x, board)
     }
   }
 

@@ -65,3 +65,7 @@ body {
 .container .hit {
   background-color: red;
 }
+
+.container .miss {
+  background-color: blue;
+}

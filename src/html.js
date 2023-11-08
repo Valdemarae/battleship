@@ -193,15 +193,22 @@ export default class Html {
   }
 
   static hit(className, board) {
-    let node = null
-    for (let i = 0; i < board.childNodes.length; i++) {
-      for (let j = 0; j < board.childNodes[i].childNodes.length; j++) {
-        if (board.childNodes[i].childNodes[j].classList.contains(className)) {
-          node = board.childNodes[i].childNodes[j]
-          break
-        }
+    const node = findNode(className, board)
+    node.classList.add('hit')
+  }
+
+  static miss(className, board) {
+    const node = findNode(className, board)
+    node.classList.add('miss')
+  }
+}
+
+function findNode(className, board) {
+  for (let i = 0; i < board.childNodes.length; i++) {
+    for (let j = 0; j < board.childNodes[i].childNodes.length; j++) {
+      if (board.childNodes[i].childNodes[j].classList.contains(className)) {
+        return board.childNodes[i].childNodes[j]
       }
     }
-    node.classList.add('hit')
   }
 }
