@@ -61,7 +61,6 @@ export default class Game {
 
   static restart() {
     Html.repopulateBoards()
-    document.querySelector('.container')
     new Game()
   }
 

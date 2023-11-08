@@ -1,11 +1,7 @@
 import Game from "./game_class"
 
-const EMPTY = ''
-const MISS = 'o'
-const HIT = 'x'
-const SHIP = 's'
-
 let rotateCalled = false
+let length = null
 
 export default class Html {
   static populateBoards() {
@@ -61,7 +57,6 @@ export default class Html {
       document.querySelector('.ships').appendChild(ship)
     }
     let ship = null
-    let length = null
     let width = null
     let height = null
 
