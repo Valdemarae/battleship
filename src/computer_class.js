@@ -13,38 +13,44 @@ export default class Computer {
       const coordinates = this.#getPlacementCoordinates(board, vertical, length)
       board.placeShip(coordinates[0], coordinates[1], length, vertical)
     })
+    console.log(board)
   }
 
   #getPlacementCoordinates(board, vertical, length) {
-    let x = null
-    let y = null
-    let valid = true
-    do {
-      if (vertical) {
-        x = Math.floor(Math.random()*10)
-        do {
-          y = Math.floor(Math.random()*10) - length + 1
-        } while(y < 0)
-        for (let i = 0; i < length; i++) {
-          if (board.notEmpty(x, y + i)) {
-            valid = false
+    let possible = []
+    let valid = null
+    if (vertical) {
+      for (let x = 0; x < 10; x++) {
+        for (let y = 0; y < 10 - length + 1; y++) {
+          valid = true
+          for (let k = 0; k < length; k++) {
+            if (board.notEmpty(x, y + k)) {
+              valid = false
+              break
+            }
           }
-        }
-      } else {
-        y = Math.floor(Math.random()*10)
-        do {
-          x = Math.floor(Math.random()*10) - length + 1
-        } while (x < 0)
-        for (let i = 0; i < length; i++) {
-          if (board.notEmpty(x + i, y)) {
-            valid = false
+          if (valid) {
+            possible.push([x, y])
           }
         }
       }
-      if (valid) {
-        return [x, y]
+    } else {
+      for (let y = 0; y < 10; y++) {
+        for (let x = 0; x < 10 - length + 1; x++) {
+          valid = true
+          for (let k = 0; k < length; k++) {
+            if (board.notEmpty(x + k, y)) {
+              valid = false
+              break
+            }
+          }
+          if (valid) {
+            possible.push([x, y])
+          }
+        }
       }
-    } while(true)
+    }
+    return possible[Math.floor(Math.random()*possible.length)]
   }
 
   #resetMoves() {
