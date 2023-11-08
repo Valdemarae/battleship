@@ -26,12 +26,21 @@ export default class Game {
         const yNum = Number(y)
         const xNum = Number(x)
         if (this.board2.validMove(xNum, yNum)) {
-          this.player1.move(x, y)
-          const coordinates = this.computer.getCoordinates()
-          this.player2.move(coordinates[0], coordinates[1])
+          this.#makeMoves(x, y)
         }
       }
     })
+  }
+
+  #makeMoves(x, y) {
+    if (!this.player1.move(x, y)) { // Returns true if hit
+      // Computer skips turn if user hits
+      let hit = null
+      do {
+        const coordinates = this.computer.getCoordinates()
+        hit = this.player2.move(coordinates[0], coordinates[1]) // True if hit
+      } while (hit)
+    }
   }
   
   #placeShips() {

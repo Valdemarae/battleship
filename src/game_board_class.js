@@ -32,15 +32,18 @@ export default class GameBoard {
   }
 
   receiveAttack(x, y, board) {
+    let hit = false
     const value = this.array[y][x]
     if (value == SHIP) {
       this.array[y][x] = HIT
       Html.hit(''+y + x, board)
       Ship.find([y, x]).hit()
+      hit = true
     } else {
       this.array[y][x] = MISS
       Html.miss(''+y + x, board)
     }
+    return hit
   }
 
   allShipsSunk() {

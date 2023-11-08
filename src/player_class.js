@@ -13,6 +13,6 @@ export default class Player {
     } else {
       board = document.querySelector('.player_board')
     }
-    this.enemyBoard.receiveAttack(x, y, board)
+    return this.enemyBoard.receiveAttack(x, y, board)
   }
 }
