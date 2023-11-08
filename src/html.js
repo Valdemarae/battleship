@@ -201,6 +201,22 @@ export default class Html {
     const node = findNode(className, board)
     node.classList.add('miss')
   }
+
+  static over(winnerName) {
+    const container = document.querySelector('.container')
+    container.style["pointer-events"] = "none"
+    const div = document.createElement('div')
+    div.classList.add('winner')
+    const h1 = document.createElement('h1')
+    const restart = document.createElement('div')
+    h1.textContent = winnerName + ' is the winner!'
+    restart.textContent = 'Restart'
+    restart.classList.add('restart')
+    restart.style["pointer-events"] = "auto"
+    div.appendChild(h1)
+    div.appendChild(restart)
+    container.appendChild(div)
+  }
 }
 
 function findNode(className, board) {

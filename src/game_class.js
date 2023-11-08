@@ -42,14 +42,14 @@ export default class Game {
         hit = this.player2.move(coordinates[0], coordinates[1]) // True if hit
         if (hit) {
           if (this.board1.allShipsSunk()) {
-            Game.over()
+            Game.over(this.player2.name)
             return
           }
         }
       } while (hit)
     } else { // if player hit
       if (this.board2.allShipsSunk()) {
-        Game.over()
+        Game.over(this.player1.name)
       }
     }
   }
@@ -60,7 +60,7 @@ export default class Game {
     console.log(this.board2)
   }
 
-  static over() {
-    console.log('game over')
+  static over(winnerName) {
+    Html.over(winnerName)
   }
 }
