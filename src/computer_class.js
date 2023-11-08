@@ -13,7 +13,6 @@ export default class Computer {
       const coordinates = this.#getPlacementCoordinates(board, vertical, length)
       board.placeShip(coordinates[0], coordinates[1], length, vertical)
     })
-    console.log(board)
   }
 
   #getPlacementCoordinates(board, vertical, length) {

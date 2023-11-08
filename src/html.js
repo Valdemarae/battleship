@@ -5,6 +5,8 @@ const MISS = 'o'
 const HIT = 'x'
 const SHIP = 's'
 
+let rotateCalled = false
+
 export default class Html {
   static populateBoards() {
     for (let i = 9; i >= 0; i--) {
@@ -64,7 +66,9 @@ export default class Html {
     let height = null
 
     buildShip()
-    rotateEvent()
+    if (!rotateCalled) {
+      rotateEvent()
+    }
 
     const playerBoard = document.querySelector(".player_board");
     
@@ -119,6 +123,7 @@ export default class Html {
     }
     
     function rotateEvent() {
+      rotateCalled = true
       document.addEventListener('keydown', (event) => {
         if (event.key == 'r') {
           const ship1 = document.querySelector('.ship')
