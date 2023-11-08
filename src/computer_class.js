@@ -4,7 +4,7 @@ export default class Computer {
   }
 
   getCoordinates() {
-    return this.possibleMoves.splice((Math.floor(Math.random() * 100)), 1)
+    return this.possibleMoves.splice((Math.floor(Math.random() * this.possibleMoves.length)), 1)[0]
   }
 
   placeShips(board, shipLengths) {

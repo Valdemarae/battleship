@@ -27,7 +27,8 @@ export default class Game {
         const xNum = Number(x)
         if (this.board2.validMove(xNum, yNum)) {
           this.player1.move(x, y)
-          console.log('good')
+          const coordinates = this.computer.getCoordinates()
+          this.player2.move(coordinates[0], coordinates[1])
         }
       }
     })
