@@ -11,8 +11,8 @@ body {
 }
 
 .container {
-  width: 90vw;
-  height: 67vh;
+  width: 80vw;
+  height: 57vh;
   display: flex;
   gap: 10vw;
 }
@@ -21,6 +21,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+}
+
+.rotate {
+  color: rgb(119, 0, 0);
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .player_board, .computer_board {
