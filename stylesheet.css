@@ -69,3 +69,37 @@ body {
 .container .miss {
   background-color: blue;
 }
+
+.winner {
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 30%;
+  text-align: center;
+  width: 40vw;
+  height: 30vh;
+  background-color: gray;
+  color: white;
+  font-size: 2vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid black;
+}
+
+.restart {
+  background-color: red;
+  width: 30%;
+  padding: 0.5vh;
+  border: 3px solid black;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.restart:hover {
+  scale: 1.05;
+  color: red;
+  background-color: white;
+}
