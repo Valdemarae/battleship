@@ -71,5 +71,9 @@ export default class Game {
 
     this.player1 = new Player("Player", this.board2)
     this.player2 = new Player("Computer", this.board1)
+
+    const names = document.querySelectorAll('.name')
+    names[0].textContent = this.player1.name
+    names[1].textContent = this.player2.name
   }
 }
