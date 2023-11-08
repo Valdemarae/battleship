@@ -191,4 +191,17 @@ export default class Html {
       return true
     }
   }
+
+  static hit(className, board) {
+    let node = null
+    for (let i = 0; i < board.childNodes.length; i++) {
+      for (let j = 0; j < board.childNodes[i].childNodes.length; j++) {
+        if (board.childNodes[i].childNodes[j].classList.contains(className)) {
+          node = board.childNodes[i].childNodes[j]
+          break
+        }
+      }
+    }
+    node.classList.add('hit')
+  }
 }

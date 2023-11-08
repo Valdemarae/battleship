@@ -1,4 +1,5 @@
 import Ship from './ship_class'
+import Html from './html'
 
 const EMPTY = ''
 const MISS = 'o'
@@ -30,10 +31,11 @@ export default class GameBoard {
     ship.setCoordinates(coordinates)
   }
 
-  receiveAttack(x, y) {
+  receiveAttack(x, y, board) {
     const value = this.array[y][x]
     if (value == SHIP) {
       this.array[y][x] = HIT
+      Html.hit(''+y + x, board)
       Ship.find([y, x]).hit()
     } else {
       this.array[y][x] = MISS

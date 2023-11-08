@@ -6,13 +6,13 @@ export default class Player {
     this.enemyBoard = enemyBoard
   }
 
-  move(coordinates) {
-    const x = coordinates[0]
-    const y = coordinates[1]
-    if (this.enemyBoard.validMove(x, y)) {
-      this.enemyBoard.receiveAttack(x, y)
-      return true
-    } 
-    return false
+  move(x, y) {
+    let board = null
+    if (this.name == 'Player') {
+      board = document.querySelector('.computer_board')
+    } else {
+      board = document.querySelector('.player_board')
+    }
+    this.enemyBoard.receiveAttack(x, y, board)
   }
 }
